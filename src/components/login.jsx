@@ -8,6 +8,7 @@ const clientId =
 const Login = () => {
   const onSuccess = (res) => {
     console.log('Success: ', res.profileObj);
+    console.log('EMAIL: ', res.profileObj.email);
 
     refreshTokenSetup(res);
   };
@@ -16,12 +17,28 @@ const Login = () => {
     console.log('Fail: ', res);
   };
 
+  const responseGoogle = async (response) => {
+    const userObject = {
+      username: response.w3.ofa,
+      password: 'test',
+    };
+    if (response.w3.ofa) {
+      await localStorage.setItem('user', JSON.stringify(userObject));
+      await window.location.reload();
+    } else {
+    }
+    console.log(response);
+  };
+
   return (
     <>
+      <input type='text' placeholder='username' />
+      <input type='text' placeholder='password' />
+      <button>Login</button>
       <GoogleLogin
         clientId={clientId}
         buttonText='Login'
-        onSuccess={onSuccess}
+        onSuccess={responseGoogle}
         onFailure={onFailure}
         cookiePolicy={'single_host_origin'}
         style={{ marginTop: '100px' }}

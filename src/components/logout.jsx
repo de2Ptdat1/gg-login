@@ -6,6 +6,7 @@ const clientId =
 
 const Logout = () => {
   const onSuccess = (res) => {
+    console.log('logout');
     alert('Logout successfully');
   };
 
