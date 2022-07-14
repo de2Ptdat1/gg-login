@@ -1,27 +1,34 @@
 import './App.css';
 import Login from './components/login';
 import Logout from './components/logout';
-import { gapi } from 'gapi-script';
 import React from 'react';
 
-const clientId =
-  '401778691077-nn193k0bqltpf1dnn0ujfeimnqm6ufqr.apps.googleusercontent.com';
-
 function App() {
-  React.useEffect(() => {
-    const start = () => {
-      gapi.client.init({
-        clientId: clientId,
-        scope: '',
-      });
-    };
-    gapi.load('client: ', start);
-  });
+  const [isLoggedIn, setLoggedIn] = React.useState(false);
+  const [user, setUser] = React.useState(null);
+
+  const checkLogged = (val) => {
+    setLoggedIn(val);
+  };
+
+  const updateUser = (val) => {
+    setUser(val);
+  };
+
+  console.log('LOGGED: ', isLoggedIn);
 
   return (
     <div className='App'>
-      <Login />
-      <Logout />
+      <br />
+      <br />
+      {user && `Welcome, ${user?.name}`}
+      <br />
+      <br />
+      {!isLoggedIn ? (
+        <Login checkLogged={checkLogged} updateUser={updateUser} />
+      ) : (
+        <Logout checkLogged={checkLogged} updateUser={updateUser} />
+      )}
     </div>
   );
 }

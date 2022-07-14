@@ -1,44 +1,47 @@
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { refreshTokenSetup } from '../helpers/refreshToken';
+import { useQuery, gql } from '@apollo/client';
+
+const GET_LOCATIONS = gql`
+  query GetLocations {
+    locations {
+      id
+      name
+      description
+      photo
+    }
+  }
+`;
 
 const clientId =
-  '401778691077-nn193k0bqltpf1dnn0ujfeimnqm6ufqr.apps.googleusercontent.com';
+  '401778691077-fic7jano2ikc4dgds21moo9tckrokshf.apps.googleusercontent.com';
 
-const Login = () => {
+const Login = ({ checkLogged, updateUser }) => {
   const onSuccess = (res) => {
     console.log('Success: ', res.profileObj);
+    console.log('ACCESS TOKEN: ', res.accessToken);
+    console.log('ID TOKEN: ', res.tokenId);
     console.log('EMAIL: ', res.profileObj.email);
+    console.log('EXPIRES IN: ', res.tokenObj.expires_in);
+    checkLogged(true);
 
+    updateUser(res.profileObj);
     refreshTokenSetup(res);
+    // GRAPHQL HERE
+    // const { loading, error, data } = useQuery(GET_LOCATIONS);
   };
 
   const onFailure = (res) => {
     console.log('Fail: ', res);
   };
 
-  const responseGoogle = async (response) => {
-    const userObject = {
-      username: response.w3.ofa,
-      password: 'test',
-    };
-    if (response.w3.ofa) {
-      await localStorage.setItem('user', JSON.stringify(userObject));
-      await window.location.reload();
-    } else {
-    }
-    console.log(response);
-  };
-
   return (
     <>
-      <input type='text' placeholder='username' />
-      <input type='text' placeholder='password' />
-      <button>Login</button>
       <GoogleLogin
         clientId={clientId}
         buttonText='Login'
-        onSuccess={responseGoogle}
+        onSuccess={onSuccess}
         onFailure={onFailure}
         cookiePolicy={'single_host_origin'}
         style={{ marginTop: '100px' }}

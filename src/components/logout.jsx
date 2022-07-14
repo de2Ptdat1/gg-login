@@ -1,13 +1,15 @@
 import React from 'react';
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogout } from 'react-google-login';
 
 const clientId =
-  '401778691077-nn193k0bqltpf1dnn0ujfeimnqm6ufqr.apps.googleusercontent.com';
+  '401778691077-fic7jano2ikc4dgds21moo9tckrokshf.apps.googleusercontent.com';
 
-const Logout = () => {
+const Logout = ({ checkLogged, updateUser }) => {
   const onSuccess = (res) => {
     console.log('logout');
     alert('Logout successfully');
+    checkLogged(false);
+    updateUser(null);
   };
 
   const onFailure = (res) => {
@@ -16,7 +18,7 @@ const Logout = () => {
 
   return (
     <>
-      <GoogleLogin
+      <GoogleLogout
         clientId={clientId}
         buttonText='Logout'
         onLogoutSuccess={onSuccess}
