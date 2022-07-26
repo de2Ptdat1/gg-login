@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.react-calendar__tile--now {
+  background-color: #DEDEDF !important;
+  border-radius: 20px;
+}
+
+.react-calendar__tile:hover {
+  background-color: #EBDDFF !important;
+  border-radius: 20px;
+}
+
+.react-calendar__tile--active {
+  background: #6d4caf !important;
+  border-radius: 20px;
+}

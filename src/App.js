@@ -21,14 +21,21 @@ function App() {
     <div className='App'>
       <br />
       <br />
-      {user && `Welcome, ${user?.name}`}
+      <h2>{user && `Welcome, ${user?.name}`}</h2>
       <br />
       <br />
-      {!isLoggedIn ? (
+      <Login
+        checkLogged={checkLogged}
+        updateUser={updateUser}
+        isLoggedIn={isLoggedIn}
+      />
+
+      {/* {!isLoggedIn ? (
         <Login checkLogged={checkLogged} updateUser={updateUser} />
       ) : (
         <Logout checkLogged={checkLogged} updateUser={updateUser} />
-      )}
+      )} */}
+      <br />
     </div>
   );
 }

@@ -1,0 +1,53 @@
+.calendar {
+  background-color: blanchedalmond;
+  padding-bottom: 100px;
+}
+
+.test {
+  color: brown;
+}
+
+.customCalendar {
+  color: blue !important;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 14px !important;
+  width: 408px;
+}
+
+.customTime {
+  width: 408px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.itemTime {
+  text-align: left;
+  width: 80px;
+}
+
+.timeSelect {
+  width: 80px;
+  height: 30px;
+}
+
+.millisecondInput {
+  width: 72px;
+  height: 26px;
+}
+
+.btnApply {
+  float: right;
+  padding: 10px 20px;
+  background-color: darkseagreen;
+  border: none;
+  border-radius: 4px;
+  color: aliceblue;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.rdp {
+  width: 400px;
+  text-align: left;
+}

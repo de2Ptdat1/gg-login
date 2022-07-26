@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-day-picker/dist/style.css';
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
 
 const client = new ApolloClient({
   uri: 'https://flyby-gateway.herokuapp.com/',
